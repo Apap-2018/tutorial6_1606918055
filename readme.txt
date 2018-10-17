@@ -1,8 +1,8 @@
-1. Karena constraint pilot pada table FlightModel untuk dapat di flush ke DB
+1. Karena not null constraint pilot pada table FlightModel untuk dapat di flush ke DB
    memerlukan PilotModel.
 
 2. Ketika entity manager melakukan commit ke DB akan terjadi error karena
-   foreign key pilot bernilai null
+   foreign key pilot bernilai null (melanggar not null constraint)
 
 3. Mockito melakukan mock hasil dari fungsi findByFlightNumber milik flightDb dengan flight yang sudah
    dibuat sebelumnya sehingga ketika fungsi tersebut dipanggil tidak akan melakukan proses
@@ -28,16 +28,16 @@ Sehingga tidak dapat dijelaskan kenapa ada request yang gagal (merah).
 
 Berikut log hasil load test:
 
-1	18:46:24.935	Thread Group 1-1	HTTP Request	7039	Success	524630	147	77	    3
-2	18:46:25.132	Thread Group 1-2	HTTP Request	7649	Success	524630	147	47	    1
-3	18:46:25.333	Thread Group 1-3	HTTP Request	8136	Success	524630	147	59	    0
-4	18:46:25.534	Thread Group 1-4	HTTP Request	8258	Success	524630	147	75	    0
-5	18:46:25.735	Thread Group 1-5	HTTP Request	8546	Success	524630	147	76	    0
-6	18:46:25.937	Thread Group 1-6	HTTP Request	9014	Success	524630	147	117	    0
-7	18:46:26.137	Thread Group 1-7	HTTP Request	9117	Success	524630	147	107	    0
-8	18:46:26.336	Thread Group 1-8	HTTP Request	9297	Success	524630	147	104	    0
-9	18:46:26.539	Thread Group 1-9	HTTP Request	9262	Success	524630	147	156	    0
-10	18:46:26.739	Thread Group 1-10	HTTP Request	9234	Success	524630	147	155	    1
+1	18:46:24.935	Thread Group 1-1	HTTP Request	7039	Success	524630	147	77	   3
+2	18:46:25.132	Thread Group 1-2	HTTP Request	7649	Success	524630	147	47	   1
+3	18:46:25.333	Thread Group 1-3	HTTP Request	8136	Success	524630	147	59	   0
+4	18:46:25.534	Thread Group 1-4	HTTP Request	8258	Success	524630	147	75	   0
+5	18:46:25.735	Thread Group 1-5	HTTP Request	8546	Success	524630	147	76	   0
+6	18:46:25.937	Thread Group 1-6	HTTP Request	9014	Success	524630	147	117	0
+7	18:46:26.137	Thread Group 1-7	HTTP Request	9117	Success	524630	147	107	0
+8	18:46:26.336	Thread Group 1-8	HTTP Request	9297	Success	524630	147	104	0
+9	18:46:26.539	Thread Group 1-9	HTTP Request	9262	Success	524630	147	156	0
+10	18:46:26.739	Thread Group 1-10	HTTP Request	9234	Success	524630	147	155	1
 11	18:46:26.943	Thread Group 1-11	HTTP Request	14445	Success	524630	147	5215	1
 12	18:46:27.151	Thread Group 1-12	HTTP Request	14294	Success	524630	147	5758	0
 13	18:46:27.352	Thread Group 1-13	HTTP Request	14854	Success	524630	147	6370	1
